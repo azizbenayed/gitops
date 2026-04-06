@@ -1,7 +1,0 @@
-node_modules
-rest-client.http
-npm-debug.log
-Dockerfile
-.git
-.gitignore
-.env
