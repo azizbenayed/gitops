@@ -1,0 +1,10 @@
+kube-prometheus-stack:
+  grafana:
+    adminPassword: admin
+
+  prometheus:
+    prometheusSpec:
+      serviceMonitorSelectorNilUsesHelmValues: false
+
+  alertmanager:
+    enabled: true
