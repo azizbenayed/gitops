@@ -1,15 +1,36 @@
-replicaCount: 2
+microservices:
+  - name: auth
+    image:
+      repository: mohamedaziz599/microservices-devops
+      tag: auth-v93
+    port: 3000
 
-image:
-  repository: mohamedaziz599/microservises-devops
-  tag: auth-v93
-  pullPolicy: Always
+  - name: client
+    image:
+      repository: mohamedaziz599/microservices-devops
+      tag: client-v1
+    port: 3001
 
-service:
-  type: ClusterIP
-  port: 3000
+  - name: orders
+    image:
+      repository: mohamedaziz599/microservices-devops
+      tag: orders-v1
+    port: 3002
 
-canary:
-  enabled: false
-  weight: 10
-  imageTag: auth-v94
+  - name: payments
+    image:
+      repository: mohamedaziz599/microservices-devops
+      tag: payments-v1
+    port: 3003
+
+  - name: tickets
+    image:
+      repository: mohamedaziz599/microservices-devops
+      tag: tickets-v1
+    port: 3004
+
+  - name: expiration
+    image:
+      repository: mohamedaziz599/microservices-devops
+      tag: expiration-v1
+    port: 3005
