@@ -1,15 +1,18 @@
+{{- range .Values.microservices }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "auth.fullname" . }}
+  name: {{ .name }}
   labels:
-    {{- include "auth.labels" . | nindent 4 }}
+    app: {{ .name }}
 spec:
-  type: {{ .Values.service.type }}
+  type: ClusterIP
+  selector:
+    app: {{ .name }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
+    - port: 80
+      targetPort: {{ .port }}
       protocol: TCP
       name: http
-  selector:
-    {{- include "auth.selectorLabels" . | nindent 4 }}
+---
+{{- end }}
