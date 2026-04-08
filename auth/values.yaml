@@ -1,36 +1,36 @@
 microservices:
   - name: auth
     image:
-      repository: mohamedaziz599/microservices-devops
+      repository: mohamedaziz599
       tag: auth-v93
     port: 3000
 
   - name: client
     image:
-      repository: mohamedaziz599/microservices-devops
+      repository: mohamedaziz599
       tag: client-v1
     port: 3001
 
   - name: orders
     image:
-      repository: mohamedaziz599/microservices-devops
+      repository: mohamedaziz599
       tag: orders-v1
     port: 3002
 
   - name: payments
     image:
-      repository: mohamedaziz599/microservices-devops
+      repository: mohamedaziz599
       tag: payments-v1
     port: 3003
 
   - name: tickets
     image:
-      repository: mohamedaziz599/microservices-devops
-      tag: tickets-v1
+      repository: mohamedaziz599/tickets
+      tag: 113
     port: 3004
 
   - name: expiration
     image:
-      repository: mohamedaziz599/microservices-devops
+      repository: mohamedaziz599
       tag: expiration-v1
     port: 3005
