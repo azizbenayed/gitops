@@ -37,3 +37,8 @@ microservices:
     env:
     - name: RABBITMQ_URL
       value: amqp://guest:guest@rabbitmq:5672
+rabbitmq:
+  enabled: true
+  image: rabbitmq:3-management
+  port: 5672
+  managementPort: 15672
