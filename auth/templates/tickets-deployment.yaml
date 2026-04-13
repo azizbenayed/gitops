@@ -1,36 +1,43 @@
+{{- range .Values.microservices }}
+{{- if eq .name "tickets" }}
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tickets
+  name: {{ .name }}
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: tickets
+      app: {{ .name }}
   template:
     metadata:
       labels:
-        app: tickets
+        app: {{ .name }}
     spec:
       containers:
-        - name: tickets
-          image: {{ .Values.microservices | first | default dict | get "image" | default dict }}
+        - name: {{ .name }}
+          image: {{ .image.repository }}:{{ .image.tag }}
           imagePullPolicy: Always
           ports:
-            - containerPort: 3004
+            - containerPort: {{ .port }}
 
+          {{- if .env }}
           env:
-            - name: MONGO_URI
-              value: mongodb://mongodb:27017/tickets
+{{ toYaml .env | nindent 12 }}
+          {{- end }}
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: tickets
+  name: {{ .name }}
 spec:
   selector:
-    app: tickets
+    app: {{ .name }}
   ports:
     - port: 80
-      targetPort: 3004
+      targetPort: {{ .port }}
+
+{{- end }}
+{{- end }}
