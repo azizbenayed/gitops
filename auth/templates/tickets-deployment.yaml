@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tickets
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tickets
+  template:
+    metadata:
+      labels:
+        app: tickets
+    spec:
+      containers:
+        - name: tickets
+          image: {{ .Values.microservices | first | default dict | get "image" | default dict }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3004
+
+          env:
+            - name: MONGO_URI
+              value: mongodb://mongodb:27017/tickets
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tickets
+spec:
+  selector:
+    app: tickets
+  ports:
+    - port: 80
+      targetPort: 3004
