@@ -34,3 +34,6 @@ microservices:
       repository: mohamedaziz599/expiration
       tag: 113
     port: 3005
+    env:
+    - name: RABBITMQ_URL
+      value: amqp://guest:guest@rabbitmq:5672
