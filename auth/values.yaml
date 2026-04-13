@@ -42,3 +42,7 @@ rabbitmq:
   image: rabbitmq:3-management
   port: 5672
   managementPort: 15672
+mongodb:
+  enabled: true
+  image: mongo:6
+  port: 27017
