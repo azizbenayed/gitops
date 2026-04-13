@@ -19,9 +19,9 @@ spec:
           ports:
             - containerPort: {{ .Values.rabbitmq.port }}
             - containerPort: {{ .Values.rabbitmq.managementPort }}
+{{- end }}
 
-
- ---
+---
 
 {{- if .Values.rabbitmq.enabled }}
 apiVersion: v1
