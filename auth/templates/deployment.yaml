@@ -19,5 +19,11 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: {{ .port }}
+
+          {{- if .env }}
+          env:
+{{ toYaml .env | indent 12 }}
+          {{- end }}
+
 ---
 {{- end }}
