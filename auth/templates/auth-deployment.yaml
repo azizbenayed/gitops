@@ -1,0 +1,43 @@
+{{- range .Values.microservices }}
+{{- if eq .name "auth" }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .name }}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: {{ .name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .name }}
+    spec:
+      containers:
+        - name: {{ .name }}
+          image: {{ .image.repository }}:{{ .image.tag }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: {{ .port }}
+
+          {{- if .env }}
+          env:
+{{ toYaml .env | nindent 12 }}
+          {{- end }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .name }}
+spec:
+  selector:
+    app: {{ .name }}
+  ports:
+    - port: 80
+      targetPort: {{ .port }}
+
+{{- end }}
+{{- end }}
