@@ -22,7 +22,7 @@ spec:
 
           {{- if .env }}
           env:
-{{ toYaml .env | indent 12 }}
+{{ toYaml .env | nindent 12 }}
           {{- end }}
 
 ---
