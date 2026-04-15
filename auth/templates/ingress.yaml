@@ -9,7 +9,7 @@ spec:
 
   rules:
     - host: nodeapp.local
-    - http:
+      http:
         paths:
 
           - path: /api/auth
