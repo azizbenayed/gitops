@@ -8,6 +8,7 @@ spec:
   ingressClassName: nginx  
 
   rules:
+    - host: nodeapp.local
     - http:
         paths:
 
