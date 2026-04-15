@@ -12,7 +12,7 @@ microservices:
     image:
       repository: mohamedaziz599/client
       tag: 117
-    port: 3001
+    port: 3000
     env:
       - name: MONGO_URI
         value: mongodb://mongodb:27017/client
