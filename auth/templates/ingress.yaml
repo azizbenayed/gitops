@@ -9,19 +9,13 @@ spec:
     - host: nodeapp.local
       http:
         paths:
+
+          # APIs
           - path: /api/auth
             pathType: Prefix
             backend:
               service:
                 name: auth
-                port:
-                  number: 80
-
-          - path: /api/client
-            pathType: Prefix
-            backend:
-              service:
-                name: client
                 port:
                   number: 80
 
@@ -46,5 +40,14 @@ spec:
             backend:
               service:
                 name: tickets
+                port:
+                  number: 80
+
+          # FRONTEND (client)
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: client
                 port:
                   number: 80
