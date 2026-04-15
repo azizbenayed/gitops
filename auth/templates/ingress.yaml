@@ -6,13 +6,11 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx  
-  
+
   rules:
-    - host: nodeapp.local
-      http:
+    - http:
         paths:
 
-          # APIs
           - path: /api/auth
             pathType: Prefix
             backend:
@@ -45,7 +43,6 @@ spec:
                 port:
                   number: 80
 
-          # FRONTEND (client)
           - path: /
             pathType: Prefix
             backend:
