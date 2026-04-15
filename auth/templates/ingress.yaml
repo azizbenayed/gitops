@@ -49,4 +49,4 @@ spec:
               service:
                 name: client
                 port:
-                  number: 3001
+                  number: 80
