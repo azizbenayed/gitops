@@ -19,6 +19,11 @@ spec:
           ports:
             - containerPort: {{ .Values.rabbitmq.port }}
             - containerPort: {{ .Values.rabbitmq.managementPort }}
+          env:
+            - name: RABBITMQ_DEFAULT_USER
+              value: {{ .Values.rabbitmq.auth.username }}
+            - name: RABBITMQ_DEFAULT_PASS
+              value: {{ .Values.rabbitmq.auth.password }}
 {{- end }}
 
 ---
