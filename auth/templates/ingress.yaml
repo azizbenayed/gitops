@@ -16,7 +16,7 @@ spec:
               service:
                 name: auth
                 port:
-                  number: 3000
+                  number: 80
 
           - path: /api/orders
             pathType: Prefix
@@ -24,7 +24,7 @@ spec:
               service:
                 name: orders
                 port:
-                  number: 3002
+                  number: 80
 
           - path: /api/payments
             pathType: Prefix
@@ -32,7 +32,7 @@ spec:
               service:
                 name: payments
                 port:
-                  number: 3003
+                  number: 80
 
           - path: /api/tickets
             pathType: Prefix
@@ -40,7 +40,7 @@ spec:
               service:
                 name: tickets
                 port:
-                  number: 3004
+                  number: 80
 
           - path: /
             pathType: Prefix
@@ -48,4 +48,4 @@ spec:
               service:
                 name: client
                 port:
-                  number: 3000
+                  number: 80
