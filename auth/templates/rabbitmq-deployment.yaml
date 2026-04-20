@@ -21,9 +21,15 @@ spec:
             - containerPort: {{ .Values.rabbitmq.managementPort }}
           env:
             - name: RABBITMQ_DEFAULT_USER
-              value: {{ .Values.rabbitmq.auth.username }}
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-secret
+                  key: username
             - name: RABBITMQ_DEFAULT_PASS
-              value: {{ .Values.rabbitmq.auth.password }}
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-secret
+                  key: password
 {{- end }}
 
 ---
