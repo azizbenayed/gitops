@@ -4,12 +4,10 @@ metadata:
   name: nodeapp-ingress
 spec:
   ingressClassName: nginx
-
   rules:
     - host: nodeapp.local
       http:
         paths:
-
           - path: /api/auth
             pathType: Prefix
             backend:
