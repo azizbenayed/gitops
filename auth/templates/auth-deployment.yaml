@@ -21,11 +21,15 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: {{ .port }}
-
-          {{- if .env }}
           env:
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+{{- if .env }}
 {{ toYaml .env | nindent 12 }}
-          {{- end }}
+{{- end }}
 
 ---
 apiVersion: v1
