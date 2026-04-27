@@ -15,7 +15,7 @@ spec:
     - host: nodeapp.local
       http:
         paths:
-          - path: /api/auth
+          - path: /api/users
             pathType: Prefix
             backend:
               service:
