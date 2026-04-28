@@ -5,8 +5,18 @@ microservices:
       tag: 123
     port: 3000
     env:
+      - name: JWT_KEY
+        valueFrom:
+          secretKeyRef:
+            name: jwt-secret
+            key: jwt_key
       - name: MONGO_URI
         value: mongodb://mongodb:27017/auth
+      - name: RABBITMQ_URL
+        valueFrom:
+          secretKeyRef:
+            name: rabbitmq-secret
+            key: rabbitmq_url
 
   - name: client
     image:
@@ -16,6 +26,11 @@ microservices:
     env:
       - name: HOST
         value: "0.0.0.0"
+      - name: JWT_KEY
+        valueFrom:
+          secretKeyRef:
+            name: jwt-secret
+            key: jwt_key
       - name: MONGO_URI
         value: mongodb://mongodb:27017/client
 
@@ -25,8 +40,18 @@ microservices:
       tag: 123
     port: 3002
     env:
+      - name: JWT_KEY
+        valueFrom:
+          secretKeyRef:
+            name: jwt-secret
+            key: jwt_key
       - name: MONGO_URI
         value: mongodb://mongodb:27017/orders
+      - name: RABBITMQ_URL
+        valueFrom:
+          secretKeyRef:
+            name: rabbitmq-secret
+            key: rabbitmq_url
 
   - name: payments
     image:
@@ -34,8 +59,18 @@ microservices:
       tag: 123
     port: 3003
     env:
+      - name: JWT_KEY
+        valueFrom:
+          secretKeyRef:
+            name: jwt-secret
+            key: jwt_key
       - name: MONGO_URI
         value: mongodb://mongodb:27017/payments
+      - name: RABBITMQ_URL
+        valueFrom:
+          secretKeyRef:
+            name: rabbitmq-secret
+            key: rabbitmq_url
 
   - name: tickets
     image:
@@ -43,8 +78,18 @@ microservices:
       tag: 123
     port: 3004
     env:
+      - name: JWT_KEY
+        valueFrom:
+          secretKeyRef:
+            name: jwt-secret
+            key: jwt_key
       - name: MONGO_URI
         value: mongodb://mongodb:27017/tickets
+      - name: RABBITMQ_URL
+        valueFrom:
+          secretKeyRef:
+            name: rabbitmq-secret
+            key: rabbitmq_url
 
   - name: expiration
     image:
@@ -52,6 +97,11 @@ microservices:
       tag: 123
     port: 3005
     env:
+      - name: JWT_KEY
+        valueFrom:
+          secretKeyRef:
+            name: jwt-secret
+            key: jwt_key
       - name: MONGO_URI
         value: mongodb://mongodb:27017/expiration
       - name: RABBITMQ_URL
@@ -59,14 +109,3 @@ microservices:
           secretKeyRef:
             name: rabbitmq-secret
             key: rabbitmq_url
-
-rabbitmq:
-  enabled: true
-  image: rabbitmq:3-management
-  port: 5672
-  managementPort: 15672
-
-mongodb:
-  enabled: true
-  image: mongo:6
-  port: 27017
