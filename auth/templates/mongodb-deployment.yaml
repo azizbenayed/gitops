@@ -1,5 +1,4 @@
-{{- if .Values.mongodb.enabled }}
-
+{{- if and .Values.mongodb .Values.mongodb.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,12 +15,11 @@ spec:
     spec:
       containers:
         - name: mongodb
-          image: {{ .Values.mongodb.image }}
+          image: {{ .Values.mongodb.image | default "mongo:6" }}
           ports:
-            - containerPort: {{ .Values.mongodb.port }}
+            - containerPort: {{ .Values.mongodb.port | default 27017 }}
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -30,7 +28,6 @@ spec:
   selector:
     app: mongodb
   ports:
-    - port: 27017
-      targetPort: 27017
-
+    - port: {{ .Values.mongodb.port | default 27017 }}
+      targetPort: {{ .Values.mongodb.port | default 27017 }}
 {{- end }}
