@@ -2,7 +2,7 @@ microservices:
   - name: auth
     image:
       repository: mohamedaziz599/auth
-      tag: 125
+      tag: 123
     port: 3000
     env:
       - name: JWT_KEY
@@ -21,7 +21,7 @@ microservices:
   - name: client
     image:
       repository: mohamedaziz599/client
-      tag: 125
+      tag: 123
     port: 3000
     env:
       - name: HOST
@@ -37,7 +37,7 @@ microservices:
   - name: orders
     image:
       repository: mohamedaziz599/orders
-      tag: 125
+      tag: 123
     port: 3000
     env:
       - name: JWT_KEY
@@ -56,7 +56,7 @@ microservices:
   - name: payments
     image:
       repository: mohamedaziz599/payments
-      tag: 125
+      tag: 123
     port: 3000
     env:
       - name: JWT_KEY
@@ -80,7 +80,7 @@ microservices:
   - name: tickets
     image:
       repository: mohamedaziz599/tickets
-      tag: 125
+      tag: 123
     port: 3000
     env:
       - name: JWT_KEY
@@ -99,7 +99,7 @@ microservices:
   - name: expiration
     image:
       repository: mohamedaziz599/expiration
-      tag: 125
+      tag: 123
     port: 3000
     env:
       - name: JWT_KEY
