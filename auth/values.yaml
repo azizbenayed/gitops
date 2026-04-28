@@ -2,7 +2,7 @@ microservices:
   - name: auth
     image:
       repository: mohamedaziz599/auth
-      tag: 117
+      tag: 123
     port: 3000
     env:
       - name: MONGO_URI
@@ -11,7 +11,7 @@ microservices:
   - name: client
     image:
       repository: mohamedaziz599/client
-      tag: 117
+      tag: 123
     port: 3000
     env:
       - name: HOST
@@ -22,7 +22,7 @@ microservices:
   - name: orders
     image:
       repository: mohamedaziz599/orders
-      tag: 117
+      tag: 123
     port: 3002
     env:
       - name: MONGO_URI
@@ -31,7 +31,7 @@ microservices:
   - name: payments
     image:
       repository: mohamedaziz599/payments
-      tag: 117
+      tag: 123
     port: 3003
     env:
       - name: MONGO_URI
@@ -40,7 +40,7 @@ microservices:
   - name: tickets
     image:
       repository: mohamedaziz599/tickets
-      tag: 117
+      tag: 123
     port: 3004
     env:
       - name: MONGO_URI
@@ -49,7 +49,7 @@ microservices:
   - name: expiration
     image:
       repository: mohamedaziz599/expiration
-      tag: 117
+      tag: 123
     port: 3005
     env:
       - name: MONGO_URI
