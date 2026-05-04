@@ -13,10 +13,7 @@ microservices:
       - name: MONGO_URI
         value: mongodb://mongodb:27017/auth
       - name: RABBITMQ_URL
-        valueFrom:
-          secretKeyRef:
-            name: rabbitmq-secret
-            key: rabbitmq_url
+        value: amqp://dev:dev@rabbitmq:5672
 
   - name: client
     image:
@@ -48,10 +45,7 @@ microservices:
       - name: MONGO_URI
         value: mongodb://mongodb:27017/orders
       - name: RABBITMQ_URL
-        valueFrom:
-          secretKeyRef:
-            name: rabbitmq-secret
-            key: rabbitmq_url
+        value: amqp://dev:dev@rabbitmq:5672
 
   - name: payments
     image:
@@ -67,10 +61,7 @@ microservices:
       - name: MONGO_URI
         value: mongodb://mongodb:27017/payments
       - name: RABBITMQ_URL
-        valueFrom:
-          secretKeyRef:
-            name: rabbitmq-secret
-            key: rabbitmq_url
+        value: amqp://dev:dev@rabbitmq:5672
       - name: STRIPE_KEY
         valueFrom:
           secretKeyRef:
@@ -91,10 +82,7 @@ microservices:
       - name: MONGO_URI
         value: mongodb://mongodb:27017/tickets
       - name: RABBITMQ_URL
-        valueFrom:
-          secretKeyRef:
-            name: rabbitmq-secret
-            key: rabbitmq_url
+        value: amqp://dev:dev@rabbitmq:5672
 
   - name: expiration
     image:
@@ -110,10 +98,7 @@ microservices:
       - name: MONGO_URI
         value: mongodb://mongodb:27017/expiration
       - name: RABBITMQ_URL
-        valueFrom:
-          secretKeyRef:
-            name: rabbitmq-secret
-            key: rabbitmq_url
+        value: amqp://dev:dev@rabbitmq:5672
 
 rabbitmq:
   enabled: true
