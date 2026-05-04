@@ -4,6 +4,7 @@ metadata:
   name: nodeapp-ingress
   namespace: default
   annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/proxy-body-size: "10m"
     nginx.ingress.kubernetes.io/limit-rps: "100"
@@ -15,40 +16,40 @@ spec:
     - host: nodeapp.local
       http:
         paths:
-          - path: /api/users
-            pathType: Prefix
+          - path: /api/users/?(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: auth
                 port:
                   number: 80
 
-          - path: /api/orders
-            pathType: Prefix
+          - path: /api/orders/?(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: orders
                 port:
                   number: 80
 
-          - path: /api/payments
-            pathType: Prefix
+          - path: /api/payments/?(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: payments
                 port:
                   number: 80
 
-          - path: /api/tickets
-            pathType: Prefix
+          - path: /api/tickets/?(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: tickets
                 port:
                   number: 80
 
-          - path: /
-            pathType: Prefix
+          - path: /?(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: client
