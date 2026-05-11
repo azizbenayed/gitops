@@ -13,7 +13,7 @@ microservices:
       - name: MONGO_URI
         value: mongodb://mongodb:27017/auth
       - name: RABBITMQ_URL
-        value: amqp://dev:dev@rabbitmq:5672
+        value: amqp://admin:StrongPassword123@rabbitmq:5672
 
   - name: client
     image:
@@ -35,7 +35,7 @@ microservices:
     image:
       repository: mohamedaziz599/orders
       tag: 123
-    port: 3000
+    port: 3002
     env:
       - name: JWT_KEY
         valueFrom:
@@ -45,7 +45,7 @@ microservices:
       - name: MONGO_URI
         value: mongodb://mongodb:27017/orders
       - name: RABBITMQ_URL
-        value: amqp://dev:dev@rabbitmq:5672
+        value: amqp://admin:StrongPassword123@rabbitmq:5672
 
   - name: payments
     image:
@@ -61,7 +61,7 @@ microservices:
       - name: MONGO_URI
         value: mongodb://mongodb:27017/payments
       - name: RABBITMQ_URL
-        value: amqp://dev:dev@rabbitmq:5672
+        value: amqp://admin:StrongPassword123@rabbitmq:5672
       - name: STRIPE_KEY
         valueFrom:
           secretKeyRef:
@@ -82,7 +82,7 @@ microservices:
       - name: MONGO_URI
         value: mongodb://mongodb:27017/tickets
       - name: RABBITMQ_URL
-        value: amqp://dev:dev@rabbitmq:5672
+        value: amqp://admin:StrongPassword123@rabbitmq:5672
 
   - name: expiration
     image:
@@ -98,7 +98,7 @@ microservices:
       - name: MONGO_URI
         value: mongodb://mongodb:27017/expiration
       - name: RABBITMQ_URL
-        value: amqp://dev:dev@rabbitmq:5672
+        value: amqp://admin:StrongPassword123@rabbitmq:5672
 
 rabbitmq:
   enabled: true
