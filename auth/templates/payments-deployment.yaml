@@ -21,32 +21,12 @@ spec:
         - name: {{ .name }}
           image: {{ .image.repository }}:{{ .image.tag }}
           imagePullPolicy: Always
-
           ports:
             - containerPort: {{ .port }}
-
-          # 🔥 Variables d'environnement
+{{- if .env }}
           env:
-            - name: JWT_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: jwt-secret
-                  key: JWT_KEY
-
-            - name: MONGO_URI
-              value: mongodb://mongodb:27017/payments
-
-            - name: RABBITMQ_URL
-              valueFrom:
-                secretKeyRef:
-                  name: rabbitmq-secret
-                  key: rabbitmq_url
-
-            - name: STRIPE_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: stripe-secret
-                  key: STRIPE_KEY
+{{ toYaml .env | nindent 12 }}
+{{- end }}
 
 ---
 apiVersion: v1
