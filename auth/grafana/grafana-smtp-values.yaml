@@ -1,0 +1,20 @@
+grafana:
+  envFromSecret: grafana-smtp
+
+  persistence:
+    enabled: true
+    type: pvc
+    storageClassName: local-path
+    accessModes:
+      - ReadWriteOnce
+    size: 2Gi
+
+  grafana.ini:
+    smtp:
+      enabled: true
+      host: smtp.gmail.com:587
+      user: $__env{GF_SMTP_USER}
+      password: $__env{GF_SMTP_PASSWORD}
+      from_address: $__env{GF_SMTP_USER}
+      from_name: Grafana Alerts
+      skip_verify: true
