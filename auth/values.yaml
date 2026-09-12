@@ -21,7 +21,7 @@ microservices:
   - name: client
     image:
       repository: mohamedaziz599/client
-      tag: 123
+      tag: 136
     port: 3000
     env:
       - name: HOST
