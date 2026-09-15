@@ -38,7 +38,7 @@ microservices:
     image:
       repository: mohamedaziz599/orders
       tag: 147
-    port: 3002
+    port: 3000
     env:
       - name: JWT_KEY
         valueFrom:
