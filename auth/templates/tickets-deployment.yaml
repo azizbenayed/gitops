@@ -14,6 +14,8 @@ spec:
     metadata:
       labels:
         app: {{ .name }}
+      annotations:
+        reloader.stakater.com/auto: "true"
     spec:
       containers:
         - name: {{ .name }}
