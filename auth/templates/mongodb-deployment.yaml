@@ -1,4 +1,16 @@
 {{- if and .Values.mongodb .Values.mongodb.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.mongodb.storage | default "5Gi" }}
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,6 +30,13 @@ spec:
           image: {{ .Values.mongodb.image | default "mongo:6" }}
           ports:
             - containerPort: {{ .Values.mongodb.port | default 27017 }}
+          volumeMounts:
+            - name: mongodb-data
+              mountPath: /data/db
+      volumes:
+        - name: mongodb-data
+          persistentVolumeClaim:
+            claimName: mongodb-pvc
 
 ---
 apiVersion: v1

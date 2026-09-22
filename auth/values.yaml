@@ -125,3 +125,4 @@ mongodb:
   enabled: true
   image: mongo:6
   port: 27017
+  storage: 5Gi
