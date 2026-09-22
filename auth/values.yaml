@@ -11,10 +11,7 @@ microservices:
             name: jwt-secret
             key: JWT_KEY
       - name: MONGO_URI
-        valueFrom:
-          secretKeyRef:
-            name: mongo-secret-auth
-            key: MONGO_URI
+        value: mongodb://mongodb:27017/auth
       - name: RABBITMQ_URL
         valueFrom:
           secretKeyRef:
@@ -49,10 +46,7 @@ microservices:
             name: jwt-secret
             key: JWT_KEY
       - name: MONGO_URI
-        valueFrom:
-          secretKeyRef:
-            name: mongo-secret-orders
-            key: MONGO_URI
+        value: mongodb://mongodb:27017/orders
       - name: RABBITMQ_URL
         valueFrom:
           secretKeyRef:
@@ -71,10 +65,7 @@ microservices:
             name: jwt-secret
             key: JWT_KEY
       - name: MONGO_URI
-        valueFrom:
-          secretKeyRef:
-            name: mongo-secret-payments
-            key: MONGO_URI
+        value: mongodb://mongodb:27017/payments
       - name: RABBITMQ_URL
         valueFrom:
           secretKeyRef:
@@ -98,10 +89,7 @@ microservices:
             name: jwt-secret
             key: JWT_KEY
       - name: MONGO_URI
-        valueFrom:
-          secretKeyRef:
-            name: mongo-secret-tickets
-            key: MONGO_URI
+        value: mongodb://mongodb:27017/tickets
       - name: RABBITMQ_URL
         valueFrom:
           secretKeyRef:
