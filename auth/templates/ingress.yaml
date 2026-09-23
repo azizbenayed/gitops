@@ -10,6 +10,10 @@ metadata:
     nginx.ingress.kubernetes.io/limit-rps: "100"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - nodeapp.local
+      secretName: local-tls
   rules:
     - host: nodeapp.local
       http:
@@ -65,6 +69,11 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "10m"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - grafana.local
+        - prometheus.local
+      secretName: local-tls
   rules:
     - host: grafana.local
       http:
