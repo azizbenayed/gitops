@@ -114,12 +114,20 @@ microservices:
           secretKeyRef:
             name: rabbitmq-secret
             key: RABBITMQ_URL
+      - name: REDIS_HOST
+        value: redis
 
 rabbitmq:
   enabled: true
   image: rabbitmq:3-management
   port: 5672
   managementPort: 15672
+
+redis:
+  enabled: true
+  image: redis:7-alpine
+  port: 6379
+  storage: 1Gi
 
 mongodb:
   enabled: true

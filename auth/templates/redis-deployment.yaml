@@ -1,0 +1,61 @@
+{{- if and .Values.redis .Values.redis.enabled }}
+# Backing store for the expiration service's Bull queue (delayed
+# "expire this order" jobs). Persisted with an append-only file on a PVC so
+# pending expirations survive a pod restart or node reboot - otherwise any
+# order awaiting payment at reboot time would never expire.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.redis.storage | default "1Gi" }}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  replicas: 1
+  # ReadWriteOnce volume: stop the old pod before starting the new one.
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: {{ .Values.redis.image }}
+          args: ["redis-server", "--appendonly", "yes"]
+          ports:
+            - containerPort: {{ .Values.redis.port }}
+          volumeMounts:
+            - name: redis-data
+              mountPath: /data
+      volumes:
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: redis-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+spec:
+  selector:
+    app: redis
+  ports:
+    - name: redis
+      port: {{ .Values.redis.port }}
+      targetPort: {{ .Values.redis.port }}
+{{- end }}
