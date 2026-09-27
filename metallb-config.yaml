@@ -1,0 +1,32 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: default-pool
+  namespace: metallb-system
+spec:
+  # 192.168.1.241 is left out: it is reserved for ingress-nginx below, so no
+  # other LoadBalancer service can grab it after a reboot.
+  addresses:
+  - 192.168.1.240/32
+  - 192.168.1.242-192.168.1.250
+---
+# Fixed IP for the ingress-nginx controller, which /etc/hosts points
+# nodeapp.local at. Only services in the ingress-nginx namespace can use it.
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: ingress-nginx-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 192.168.1.241/32
+  serviceAllocation:
+    priority: 1
+    namespaces:
+    - ingress-nginx
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: advert
+  namespace: metallb-system
