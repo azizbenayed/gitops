@@ -2,7 +2,7 @@ microservices:
   - name: auth
     image:
       repository: mohamedaziz599/auth
-      tag: 172
+      tag: 171
     port: 3000
     env:
       - name: JWT_KEY
@@ -80,7 +80,7 @@ microservices:
   - name: tickets
     image:
       repository: mohamedaziz599/tickets
-      tag: 172
+      tag: 171
     port: 3000
     env:
       - name: JWT_KEY
@@ -99,7 +99,7 @@ microservices:
   - name: expiration
     image:
       repository: mohamedaziz599/expiration
-      tag: 172
+      tag: 171
     port: 3000
     env:
       - name: JWT_KEY
